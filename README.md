@@ -70,6 +70,8 @@ export const DataSourceConfig: DataSourceOptions = {
 
 ## Running the app
 
+markdownCopy## Running the app
+
 ```bash
 # development
 $ npm run start
@@ -79,7 +81,37 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
+
+
+## Database Migrations
+Make sure your package.json includes these TypeORM scripts:
+jsonCopy{
+  "scripts": {
+    "typeorm": "npm run build && npx typeorm -d dist/db/data-source.js",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert"
+  }
+}
+To work with migrations, use these commands:
+bashCopy# Generate a new migration
+# Option 1: Generate with name directly
+$ npm run migration:generate -- db/migration/CreateUsersTable
+
+# Option 2: Generate and you'll be prompted for the name
+$ npm run migration:generate
+
+# Run pending migrations
+$ npm run migration:run
+
+# Revert the last migration
+$ npm run migration:revert
+Note: When generating migrations, you can either:
+
+Add the migration name directly after the command (e.g., CreateUsersTable)
+Run the command without a name and you'll be prompted to enter one
+
+Make sure your database is running and your .env file is properly configured before running migration commands.
 
 ## Test
 
