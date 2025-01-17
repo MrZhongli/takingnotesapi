@@ -70,7 +70,6 @@ export const DataSourceConfig: DataSourceOptions = {
 
 ## Running the app
 
-markdownCopy## Running the app
 
 ```bash
 # development
